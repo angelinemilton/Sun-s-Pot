@@ -14,9 +14,9 @@ public class GameData : MonoBehaviour
     void Start()
     {
         bankAmount = PlayerPrefs.GetFloat("BankAmount", 0);
-        todaysRevenue = PlayerPrefs.GetFloat("TodaysRevenue");
-        bankAmount += todaysRevenue;
-        PlayerPrefs.SetFloat("BankAmount", bankAmount);
+        todaysRevenue = PlayerPrefs.GetFloat("TodaysRevenue", 0);
+        // bankAmount += todaysRevenue;
+        // PlayerPrefs.SetFloat("BankAmount", bankAmount);
         SetMoneyText();
         
     }

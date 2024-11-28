@@ -9,7 +9,7 @@ public class MainMenuHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -30,6 +30,7 @@ public class MainMenuHandler : MonoBehaviour
         PlayerPrefs.SetFloat("BankAmount", 0);
         PlayerPrefs.SetInt("PalmTree", 0);
         Debug.Log("Bank Amount: " + PlayerPrefs.GetFloat("BankAmount"));
+        Debug.Log("Palm Tree: " + PlayerPrefs.GetFloat("PalmTree"));
         SceneManager.LoadScene("RestaurantScene");
     }
 }

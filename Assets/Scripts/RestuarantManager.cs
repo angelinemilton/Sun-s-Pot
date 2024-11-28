@@ -40,6 +40,9 @@ public class RestuarantManager : MonoBehaviour
         if(closed && !CustomerGenerator.singleton.customersRemaining && TableManager.singleton.AllTablesCleared()){
             Debug.Log("Changing Scene");
             PlayerPrefs.SetFloat("TodaysRevenue", revenue);
+            float bankAmount = PlayerPrefs.GetFloat("BankAmount", 0);
+            bankAmount += revenue;
+            PlayerPrefs.SetFloat("BankAmount", bankAmount);
             SceneManager.LoadScene("EndDay");
         }
         
