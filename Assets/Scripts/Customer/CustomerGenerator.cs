@@ -8,39 +8,41 @@ public class CustomerGenerator : MonoBehaviour
     [SerializeField] GameObject startOfLine;
     [SerializeField] Transform spawnPoint;
     [SerializeField] Customer customer;
+    [SerializeField] List<Customer> customerPrefabs;
 
     [SerializeField] float spawnDelay = 10;
 
     [SerializeField] float lineOffset = 1;
+    [SerializeField] public AudioSource customerCall;
+    [SerializeField] public bool customersRemaining = true;
     float endOfLineOffset = 0;
 
     public Vector3 enterPos;
 
     public int customersCount = 0;
-
-    [SerializeField] public bool customersRemaining = true;
-
-
     public static CustomerGenerator singleton;
-    // Start is called before the first frame update
+
+    
+
     void Start()
     {
         if(singleton == null){
             singleton = this;
         }
         enterPos = startOfLine.transform.position;
+        spawnDelay = spawnDelay / (GameStats.GetDay() + 1);
         GenerateCustomers();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        enterPos = startOfLine.transform.position - new Vector3(endOfLineOffset, 0, 0);
         if(customersCount == 0) customersRemaining = false;
     }
 
     Customer SpawnCustomer(){
-        return Instantiate(customer, spawnPoint.transform.position, Quaternion.identity);
+        int index = Random.Range(0, customerPrefabs.Count);
+        Customer customerPrefab = customerPrefabs[index];
+        return Instantiate(customerPrefab, spawnPoint.transform.position, Quaternion.identity);
     }
 
     void GenerateCustomers(){
@@ -50,15 +52,16 @@ public class CustomerGenerator : MonoBehaviour
             while(!RestuarantManager.singleton.IsClosed()){
                 SpawnCustomer();
                 customersCount++;
-                endOfLineOffset += lineOffset;
-                
+                endOfLineOffset -= lineOffset;
+                enterPos -= new Vector3(endOfLineOffset, 0, 0);
                 yield return new WaitForSeconds(spawnDelay);
             }
         }
     }
 
     public void TakeCustomerFromLine(){
-        endOfLineOffset -= lineOffset;
+        endOfLineOffset += lineOffset;
+        enterPos += new Vector3(endOfLineOffset, 0, 0);
         Debug.Log("Number of customers: " + customersCount);
     }
 }

@@ -21,6 +21,10 @@ public class DecorManager : MonoBehaviour
                 item.SetVisible();
                 Debug.Log("Set Palm Tree visible");
             }
+            if(item.decorName == "Garland" && GameStats.IsUnlockedGarlands()){
+                item.SetVisible();
+                Debug.Log("Set Garlands visible");
+            }
         }
     }
 

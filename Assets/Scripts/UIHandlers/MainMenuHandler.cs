@@ -1,22 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static string PalmTree = "PalmTree";
 
     public void Exit(){
         Application.Quit();
@@ -28,9 +17,16 @@ public class MainMenuHandler : MonoBehaviour
 
     public void NewGame(){
         PlayerPrefs.SetFloat("BankAmount", 0);
+        PlayerPrefs.SetFloat("Day", 1);
+        
+        //upgrades
         PlayerPrefs.SetInt("PalmTree", 0);
+        PlayerPrefs.SetInt("Garlands", 0);
+        
         Debug.Log("Bank Amount: " + PlayerPrefs.GetFloat("BankAmount"));
         Debug.Log("Palm Tree: " + PlayerPrefs.GetFloat("PalmTree"));
+
         SceneManager.LoadScene("RestaurantScene");
+
     }
 }

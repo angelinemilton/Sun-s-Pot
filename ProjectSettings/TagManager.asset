@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sky
+    uniqueID: 2616765581
+    locked: 0
   - name: Water
     uniqueID: 4214191821
     locked: 0

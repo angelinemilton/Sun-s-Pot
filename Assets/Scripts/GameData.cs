@@ -10,20 +10,12 @@ public class GameData : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI bankText;
     [SerializeField] TextMeshProUGUI revenueText;
-    // Start is called before the first frame update
+
     void Start()
     {
         bankAmount = PlayerPrefs.GetFloat("BankAmount", 0);
         todaysRevenue = PlayerPrefs.GetFloat("TodaysRevenue", 0);
-        // bankAmount += todaysRevenue;
-        // PlayerPrefs.SetFloat("BankAmount", bankAmount);
         SetMoneyText();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 

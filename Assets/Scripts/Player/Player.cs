@@ -10,34 +10,27 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject heldItem;
 
     Customer customer;
-    bool inCustomerRange = false;
+    [SerializeField] bool inCustomerRange = false;
 
-    bool inIngredientBoxRange = false;
+    [SerializeField] bool inIngredientBoxRange = false;
     IngredientBox box;
 
-    bool inPotRange = false;
+    [SerializeField] bool inPotRange = false;
     Pot pot;
 
     [SerializeField] bool inTableRange = false;
-    Table table;
+    [SerializeField] Table table;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        transform.eulerAngles = Vector3.zero; 
     }
 
     public void Move(Vector3 movement){
         transform.position += speed * Time.deltaTime * movement.normalized;
     }
 
-    void OnTriggerEnter2D(Collider2D other){
+    void OnTriggerStay2D(Collider2D other){
         if(other.CompareTag("Customer")){ 
             customer = other.GetComponent<Customer>();
             if(customer == null){
@@ -157,7 +150,7 @@ public class Player : MonoBehaviour
     void TableInteraction(){
         if(heldItem != null){
             if(heldItem.GetComponent<Recipe>() != null){
-                if(table.PlaceOrder(heldItem.GetComponent<Recipe>())) {
+                if(table.ServeOrder(heldItem.GetComponent<Recipe>())) {
                     Destroy(heldItem.GameObject());
                 }
             }

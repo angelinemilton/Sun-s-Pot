@@ -7,42 +7,38 @@ using UnityEngine.SceneManagement;
 public class RestuarantManager : MonoBehaviour
 {
     public static RestuarantManager singleton;
-    [SerializeField] float openingTime = 0;
-    [SerializeField] float closingTime = 180;
-    [SerializeField] float currentTime;
+    [SerializeField] float closingHour = 16;
+    [SerializeField] float hour = 11;
+    [SerializeField] float minute = 0;
 
     [SerializeField] float timeSpeed = 2f;
 
     [SerializeField] bool closed = false;
 
     [SerializeField] TextMeshProUGUI revenueText;
+    [SerializeField] TextMeshProUGUI timeText;
     static float revenue = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         revenue = 0;
-        revenueText.SetText("Revenue: $" + revenue);
+        revenueText.SetText("$" + revenue);
         if(singleton == null){
             singleton = this;
         }
-        currentTime = openingTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentTime += timeSpeed * Time.deltaTime;
-        if(currentTime >= closingTime){
-            CloseRestuarant();
-        }
+        SetTimeText();
 
         if(closed && !CustomerGenerator.singleton.customersRemaining && TableManager.singleton.AllTablesCleared()){
             Debug.Log("Changing Scene");
-            PlayerPrefs.SetFloat("TodaysRevenue", revenue);
-            float bankAmount = PlayerPrefs.GetFloat("BankAmount", 0);
-            bankAmount += revenue;
-            PlayerPrefs.SetFloat("BankAmount", bankAmount);
+            GameStats.IncreaseDay();
+            GameStats.SetTodaysRevenue(revenue);
+            GameStats.AddToBankAmount(revenue);
             SceneManager.LoadScene("EndDay");
         }
         
@@ -59,6 +55,20 @@ public class RestuarantManager : MonoBehaviour
 
     public void AddToRevenue(float amount){
         revenue += amount;
-        revenueText.SetText("Revenue: $" + revenue);
+        revenueText.SetText("$" + revenue);
+    }
+
+    void SetTimeText(){
+        minute += timeSpeed * Time.deltaTime;
+        if(minute >= 59){
+            hour++;
+            minute = 0;
+        }
+        if(hour >= closingHour){
+            CloseRestuarant();
+        }
+        float hourString = hour > 12 ? hour - 12 : hour;
+        if(minute <= 9) timeText.text = hourString + ":0" + minute.ToString("F0");
+        else timeText.text = hourString + ":" + minute.ToString("F0");
     }
 }

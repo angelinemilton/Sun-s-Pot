@@ -11,7 +11,7 @@ public class CustomerAI : MonoBehaviour
     [Header("Mood")]
     [SerializeField] float maxMoodTime = 10;
     [SerializeField] float currMoodTime = 0;
-    enum MoodState {HAPPY, UPSET, ANGRY, LEAVE};
+    public enum MoodState {HAPPY, UPSET, ANGRY, LEAVE};
     [SerializeField] MoodState currMood = MoodState.HAPPY;
 
     [Header("Boundary")]
@@ -33,6 +33,8 @@ public class CustomerAI : MonoBehaviour
     Recipe order;
 
     bool playerTakeOrder = false;
+    bool hasCalled = false;
+    bool hasOrder = false;
 
 
     void Start()
@@ -55,6 +57,7 @@ public class CustomerAI : MonoBehaviour
         }
 
         if(currMood == MoodState.LEAVE){
+            if(currTable != null) currTable.SetUnoccupied();
             ChangeState(LeavingState);
             restuarantState = "Leaving State";
         }
@@ -68,27 +71,30 @@ public class CustomerAI : MonoBehaviour
     void EnterState(){
         linePosition = CustomerGenerator.singleton.enterPos;
         //move from off camera to end of line
-        customer.MoveToward(linePosition);
-        
+        float endOfLineX = LineQueue.singleton.JoinLine();
+        customer.MoveToward(JoinLine());
         
     }
 
+    void LineWaitState(){
+        //move to end of line if x is less than LineQueue end of line
+    }
+
     void SeatingState(){
-        
         //follow player
         customer.MoveToward(player.transform.position);
     }
 
     void AttemptToSeat(){
-        if(customer.inTableRange){
-            currTable = customer.table;
+        currTable = customer.table;
+        if(currTable != null){
             if(!currTable.IsOccupied()){
+                customer.Seat(currTable);
+                currTable = customer.table;
                 ChangeState(OrderingState);
                 restuarantState = "Ordering State";
             }
         }
-        
-
     }
 
     void OrderingState(){
@@ -107,11 +113,19 @@ public class CustomerAI : MonoBehaviour
         currOrderTime += Time.deltaTime;
         return;
        }
-
+       else{
+        hasOrder = true;
+       }
+       
         //wave down animation + sound
+        if(!hasCalled){
+            CustomerGenerator.singleton.customerCall.Play();
+            hasCalled = true;
+        }
         customer.Wave();
 
         if(playerTakeOrder){
+            customer.ResetBody(); //remove wave
              //choose from menu and create an order
             Random.InitState(173402);
             List<Recipe> recipes = MenuManager.singleton.unlockedRecipes;
@@ -129,8 +143,9 @@ public class CustomerAI : MonoBehaviour
 
     void FoodWaitingState(){
         restuarantState = "Food Waiting State";
-        //ui bubble with order
+    
         if(currTable.orderPlaced){
+            Debug.Log(currTable.orderPlaced);
             ChangeState(EatingState);
         }
         
@@ -142,14 +157,14 @@ public class CustomerAI : MonoBehaviour
         currEatTime += Time.deltaTime;
         if(currEatTime < maxEatTime){
             customer.Eat();
-            return;
         }
-        //leave money
-        customer.Pay(currTable, order);
-        Debug.Log("Customer has paid");
-        ChangeState(LeavingState);
-            
-        
+        else{
+            customer.ResetBody();
+            //leave money
+            customer.Pay(currTable, order);
+            Debug.Log("Customer has paid");
+            ChangeState(LeavingState);
+        }
         
     }
 
@@ -174,12 +189,14 @@ public class CustomerAI : MonoBehaviour
         currMoodTime = 0;
         customer.DecrementTip();
         //change prefab to more angy
+        customer.SetMoodHead(currMood);
     }
 
     void ResetMood(){
         currMood = MoodState.HAPPY;
         currMoodTime = 0;
         //change prefab back to happy
+        customer.SetMoodHead(currMood);
     }
 
     public void PlayerInteraction(Player player){  
@@ -194,11 +211,12 @@ public class CustomerAI : MonoBehaviour
 
         }
         else if(currentState == OrderingState){
-            playerTakeOrder = true;
+            if(hasOrder) playerTakeOrder = true;
             Debug.Log("Player take order");
              
         }
         else if(currentState == FoodWaitingState){
+            Debug.Log("current table order placed: " + currTable.orderPlaced);
             if(currTable.orderPlaced) ChangeState(EatingState);
 
         }
@@ -207,11 +225,5 @@ public class CustomerAI : MonoBehaviour
         else Debug.Log("State unknown");
     }
 
-    public void PlayerPlaceOrder(){
-        ChangeState(EatingState);
-        customer.RemoveOrder();
-    }
-
-    
     
 }

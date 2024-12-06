@@ -4,7 +4,7 @@ using UnityEngine;
 public class TableManager : MonoBehaviour
 {
     public static TableManager singleton;
-    [SerializeField] List<Table> tables;
+    [SerializeField] public List<Table> tables;
 
     void Start()
     {

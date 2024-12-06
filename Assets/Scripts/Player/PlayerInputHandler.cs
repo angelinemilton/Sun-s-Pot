@@ -6,6 +6,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     [SerializeField] Player player1;
     [SerializeField] Player player2;
+    [SerializeField] GameObject square;
 
     [SerializeField] Pot pot;
     // Start is called before the first frame update
@@ -49,6 +50,10 @@ public class PlayerInputHandler : MonoBehaviour
         }
         else if(Input.GetKey(KeyCode.DownArrow)){
            player2.Move(Vector3.down);
+        }
+
+        if(Input.GetKey(KeyCode.L)){
+            square.transform.position += new Vector3(-1 * 2 * Time.deltaTime, 0, 0);
         }
     }
 

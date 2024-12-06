@@ -6,8 +6,8 @@ public class DecorItem : MonoBehaviour
     [SerializeField] public string decorName;
     void Start()
     {
-        if(!visible) GetComponent<SpriteRenderer>().color = Color.clear;
-        else GetComponent<SpriteRenderer>().color = Color.white;
+        if(!visible) gameObject.SetActive(false);
+        else gameObject.SetActive(true);
     }
     public void SetVisible(){
        visible = true;

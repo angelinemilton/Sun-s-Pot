@@ -4,12 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 public class Table : MonoBehaviour
-{   
-    [SerializeField] GameObject leftSeat;
+{ 
     [SerializeField] GameObject rightSeat;
-    [SerializeField] GameObject leftFoodSlot;
     [SerializeField] GameObject rightFoodSlot;
     [SerializeField] GameObject moneySlot;
+    [SerializeField] Sprite deluxeChair;
     [SerializeField] bool occupied = false;
 
     public bool orderPlaced = false;
@@ -20,15 +19,12 @@ public class Table : MonoBehaviour
     Recipe placedOrder;
     Money money;
 
-    // Start is called before the first frame update
     void Start()
     {
-        leftFoodSlot.GetComponent<SpriteRenderer>().color = Color.clear;
         rightFoodSlot.GetComponent<SpriteRenderer>().color = Color.clear;
         moneySlot.GetComponent<SpriteRenderer>().color = Color.clear;
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -39,6 +35,7 @@ public class Table : MonoBehaviour
         Debug.Log("table is glowing");
     }
 
+
     public Vector3 GetSeatPosition(){
        //returns seat position but a little up so the customer is sitting above it
         return rightSeat.transform.position + new Vector3(0,.5f,0);
@@ -46,13 +43,13 @@ public class Table : MonoBehaviour
     }
 
     public void SeatCustomer(Customer customerToSeat){
-        customer = customerToSeat;
-        customerToSeat.transform.position = rightSeat.transform.position + new Vector3(0,.5f,0);
-        customerToSeat.transform.SetParent(this.transform);
-    }
-
-    public void SetIsOccupied(bool occupied){
-        this.occupied = occupied;
+        if(!occupied){
+            customer = customerToSeat;
+            occupied = true;
+            customerToSeat.transform.position = rightSeat.transform.position + new Vector3(0,.5f,0);
+            customerToSeat.transform.SetParent(this.transform);
+        }
+        
     }
 
     public bool IsOccupied(){
@@ -73,7 +70,7 @@ public class Table : MonoBehaviour
 
     }
 
-    public bool PlaceOrder(Recipe recipe){
+    public bool ServeOrder(Recipe recipe){
         if(order == null) return false;
         if(recipe == null){
             Debug.Log("Place order failed, recipe null");
@@ -101,7 +98,6 @@ public class Table : MonoBehaviour
         order = null;
         money = Instantiate(MoneyManager.singleton.money, moneySlot.transform.position, Quaternion.identity);
         money.SetAmount(price);
-        money.transform.localRotation = Quaternion.Euler(0,0,18.5f);
       
         Debug.Log("The price of money placed: " + money.GetAmount());
         hasMoney = true;
@@ -110,5 +106,10 @@ public class Table : MonoBehaviour
     void ClearFood(){
         Destroy(placedOrder.GameObject());
     }
+
+    public void SetUnoccupied(){
+        occupied = false;
+    }
+
 
 }
