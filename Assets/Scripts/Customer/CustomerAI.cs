@@ -39,6 +39,7 @@ public class CustomerAI : MonoBehaviour
 
     void Start()
     {
+        maxMoodTime += GameStats.GetPlayerMoodFactor();
         ChangeState(EnterState);
         linePosition = CustomerGenerator.singleton.enterPos;
     }
@@ -123,7 +124,6 @@ public class CustomerAI : MonoBehaviour
         if(playerTakeOrder){
             customer.ResetBody(); //remove wave
              //choose from menu and create an order
-            Random.InitState(173402);
             List<Recipe> recipes = MenuManager.singleton.unlockedRecipes;
 
             order = recipes[Random.Range(0, recipes.Count)];

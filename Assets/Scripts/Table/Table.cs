@@ -21,13 +21,9 @@ public class Table : MonoBehaviour
 
     void Start()
     {
+        if(GameStats.IsUnlockedDeluxeChairs()) rightSeat.GetComponent<SpriteRenderer>().sprite = deluxeChair;
         rightFoodSlot.GetComponent<SpriteRenderer>().color = Color.clear;
         moneySlot.GetComponent<SpriteRenderer>().color = Color.clear;
-    }
-
-    void Update()
-    {
-        
     }
 
     public void Glow(){

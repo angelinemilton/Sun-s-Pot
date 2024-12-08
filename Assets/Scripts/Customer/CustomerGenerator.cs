@@ -11,10 +11,8 @@ public class CustomerGenerator : MonoBehaviour
 
     [SerializeField] float spawnDelay = 10;
 
-    [SerializeField] float lineOffset = 1;
     [SerializeField] public AudioSource customerCall;
     [SerializeField] public bool customersRemaining = true;
-    float endOfLineOffset = 0;
 
     public Vector3 enterPos;
 
@@ -29,7 +27,9 @@ public class CustomerGenerator : MonoBehaviour
             singleton = this;
         }
         enterPos = startOfLine.transform.position;
-        spawnDelay = spawnDelay / (GameStats.GetDay() + 1);
+        //increasing spawn delay every day
+        spawnDelay = spawnDelay - (GameStats.GetDay() * 2);
+        if(spawnDelay < 3) spawnDelay = 3;
         GenerateCustomers();
     }
 

@@ -14,23 +14,38 @@ public class GameStats
     readonly static string garlands = "Garlands";
     readonly static string deluxeChairs = "DeluxeChairs";
     readonly static string ingredients = "Ingredients";
+    readonly static string recipes = "Recipes";
+
+    readonly static string playerMoodFactor = "PlayerMoodFactor";
 
     public static void ResetAllData(){
         PlayerPrefs.SetInt(day, 0);
         PlayerPrefs.SetFloat(bankAmount, 0);
         PlayerPrefs.SetFloat(todaysRevenue, 0);
-        PlayerPrefs.SetFloat(operationCost, 0); //TODO maybe change to default fish rice cost
+        PlayerPrefs.SetFloat(operationCost, 0);
         PlayerPrefs.SetFloat(profit, 0);
        
         //upgrades
         PlayerPrefs.SetInt(palmTree, 0);
         PlayerPrefs.SetInt(garlands, 0);
         PlayerPrefs.SetInt(deluxeChairs, 0);
-        PlayerPrefs.SetString(ingredients, "Sun fish-Rice-"); //sting to hold names of all ingredients
+        PlayerPrefs.SetString(ingredients, ""); //sting to hold names of all ingredients
+        PlayerPrefs.SetString(recipes, "");
+
+        PlayerPrefs.SetInt(playerMoodFactor, 0);
         
         Debug.Log("Bank Amount: " + PlayerPrefs.GetFloat("BankAmount"));
         Debug.Log("Palm Tree: " + PlayerPrefs.GetFloat("PalmTree"));
 
+    }
+
+    static void IncreasePlayerMoodFactor(){
+        int newFactor =  PlayerPrefs.GetInt(playerMoodFactor) + 3;
+        PlayerPrefs.SetInt(playerMoodFactor, newFactor);
+    }
+
+    public static int GetPlayerMoodFactor(){
+        return PlayerPrefs.GetInt(playerMoodFactor);
     }
 
     public static bool IsUnlockedPalmTree(){
@@ -39,6 +54,7 @@ public class GameStats
 
     public static void UnlockPalmTree(){
         PlayerPrefs.SetInt(palmTree, 1);
+        IncreasePlayerMoodFactor();
     }
     
     public static bool IsUnlockedGarlands(){
@@ -47,6 +63,7 @@ public class GameStats
 
     public static void UnlockGarlands(){
         PlayerPrefs.SetInt(garlands, 1);
+        IncreasePlayerMoodFactor();
     }
 
     public static bool IsUnlockedDeluxeChairs(){
@@ -55,6 +72,7 @@ public class GameStats
 
     public static void UnlockDeluxeChairs(){
         PlayerPrefs.SetInt(deluxeChairs, 1);
+        IncreasePlayerMoodFactor();
     }
 
     public static void SetTodaysRevenue(float newRevenue){
@@ -71,6 +89,11 @@ public class GameStats
 
     public static void AddToBankAmount(float amount){
         float newAmount = PlayerPrefs.GetFloat(bankAmount) + amount;
+        PlayerPrefs.SetFloat(bankAmount, newAmount);
+    }
+
+    public static void DecreaseBankAmount(float amount){
+        float newAmount = PlayerPrefs.GetFloat(bankAmount) - amount;
         PlayerPrefs.SetFloat(bankAmount, newAmount);
     }
 
@@ -118,7 +141,21 @@ public class GameStats
     }
 
     public static bool IsUnlockedIngredient(Ingredient ingredient){
-        return PlayerPrefs.GetString(ingredients).Contains(ingredient.name);
+        return PlayerPrefs.GetString(ingredients).Contains(ingredient.ingredientName);
+    }
+
+    public static void AddRecipe(Recipe recipe){
+        string newRecipes = PlayerPrefs.GetString(recipes) + recipe.recipeName + "-";
+        PlayerPrefs.SetString(recipes, newRecipes);
+    }
+
+    public static void RemoveRecipe(Recipe recipe){
+        string newRecipesList = PlayerPrefs.GetString(recipes).Replace(recipe.recipeName + "-", "");
+        PlayerPrefs.SetString(ingredients, newRecipesList);
+    }
+
+    public static bool IsUnlockedRecipe(Recipe recipe){
+        return PlayerPrefs.GetString(recipes).Contains(recipe.recipeName);
     }
     
 }

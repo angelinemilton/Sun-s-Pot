@@ -18,10 +18,15 @@ public class MenuManager : MonoBehaviour
         if(singleton == null){
             singleton = this;
         }
-        //TODO until we have unlocks in game
-        foreach(Recipe recipe in unlockedRecipes){
-            recipeToIngredients.Add(recipe, recipe.GetIngredients());
-            ingredientsToRecipe.Add(recipe.GetIngredients(), recipe);
+
+        foreach(Recipe recipe in allRecipes){
+            if(GameStats.IsUnlockedRecipe(recipe)) unlockedRecipes.Add(recipe);
+        }
+
+        foreach(Recipe unlockedRecipe in unlockedRecipes){
+            Debug.Log("Unlocked Recipe: " + unlockedRecipe.recipeName);
+            recipeToIngredients.Add(unlockedRecipe, unlockedRecipe.GetIngredients());
+            ingredientsToRecipe.Add(unlockedRecipe.GetIngredients(), unlockedRecipe);
         }
     }
 

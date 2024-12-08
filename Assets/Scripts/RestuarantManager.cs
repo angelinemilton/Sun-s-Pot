@@ -22,6 +22,7 @@ public class RestuarantManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Day " + GameStats.GetDay());
         Time.timeScale = 1;
         revenue = 0;
         revenueText.SetText("$" + revenue);
@@ -39,7 +40,6 @@ public class RestuarantManager : MonoBehaviour
             Debug.Log("Changing Scene");
             GameStats.IncreaseDay();
             GameStats.SetTodaysRevenue(revenue);
-            GameStats.AddToBankAmount(revenue);
             SceneManager.LoadScene("EndDay");
         }
         

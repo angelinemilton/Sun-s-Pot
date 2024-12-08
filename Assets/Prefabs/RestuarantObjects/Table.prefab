@@ -56,7 +56,7 @@ MonoBehaviour:
   rightSeat: {fileID: 2932487046010143261}
   rightFoodSlot: {fileID: 5057047551203489849}
   moneySlot: {fileID: 3519736755277746255}
-  deluxeChair: {fileID: 0}
+  deluxeChair: {fileID: 21300000, guid: 0928f2abf92d3ac4a87d1a40b671526f, type: 3}
   occupied: 0
   orderPlaced: 0
   hasMoney: 0

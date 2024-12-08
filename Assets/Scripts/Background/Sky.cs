@@ -17,6 +17,8 @@ public class Sky : MonoBehaviour
     void Awake()
     {
         startTime = Time.deltaTime;
+        topGradientValue = 0;
+        bottomGradientValue = 0;
     }
 
     void Update()

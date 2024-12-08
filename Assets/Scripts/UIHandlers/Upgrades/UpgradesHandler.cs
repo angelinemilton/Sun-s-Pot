@@ -33,12 +33,12 @@ public class UpgradesHandler : MonoBehaviour
 
      public void OpenIngredientCanvas(){
         CloseAllCanvases();
-        ingredientsCanvas.enabled = true;
+        ingredientsCanvas.gameObject.SetActive(true);
     }
 
      public void OpenDecorCanvas(){
         CloseAllCanvases();
-        decorCanvas.enabled = true;
+        decorCanvas.gameObject.SetActive(true);
     }
 
     void SetBankBalance(){
@@ -47,8 +47,12 @@ public class UpgradesHandler : MonoBehaviour
 
     public void CloseAllCanvases(){
         menuCanvas.gameObject.SetActive(false);
-        ingredientsCanvas.enabled = false;
-        decorCanvas.enabled = false;
+        ingredientsCanvas.gameObject.SetActive(false);
+        decorCanvas.gameObject.SetActive(false);
+    }
+
+    public void Return(){
+        SceneManager.LoadScene("EndDay");
     }
 
 

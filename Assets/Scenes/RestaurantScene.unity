@@ -3467,7 +3467,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &790639619
 Canvas:
   m_ObjectHideFlags: 0
@@ -4636,7 +4636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa763ba9b719cc4ca2a1b89b3fae299, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closingHour: 20
+  closingHour: 15
   hour: 11
   minute: 0
   timeSpeed: 3
@@ -5653,51 +5653,51 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 167972547750806975, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 167972547750806975, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 167972547750806975, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1046001589066308856, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1046001589066308856, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4463904689747227652, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4463904689747227652, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5894426061007092008, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5894426061007092008, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6709751594870579311, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6709751594870579311, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6709751594870579311, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7389528763254326378, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_Name
@@ -5705,15 +5705,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7956469434774767763, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7956469434774767763, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7956469434774767763, guid: d963aceef9277624a92fa258029f69d4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6812,9 +6812,7 @@ MonoBehaviour:
   - {fileID: 1093504557}
   - {fileID: 861912843}
   - {fileID: 2119335342}
-  unlockedRecipes:
-  - {fileID: 1093504557}
-  - {fileID: 2119335342}
+  unlockedRecipes: []
 --- !u!1001 &1600275546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6927,7 +6925,6 @@ MonoBehaviour:
   - {fileID: 2396778288140143814, guid: f4d709b493da8e74792b1e478b3dd0b0, type: 3}
   - {fileID: 2396778288140143814, guid: e824c69c896d52c4b9631c96d30d2b79, type: 3}
   spawnDelay: 20
-  lineOffset: 1
   customerCall: {fileID: 1625597174}
   customersRemaining: 1
   enterPos: {x: 0, y: 0, z: 0}
