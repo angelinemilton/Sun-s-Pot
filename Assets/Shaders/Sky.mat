@@ -37,11 +37,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BottomColorPercent: 2.88
-    - _TopColorPercent: 1.19
+    - _BottomColorPercent: 4.29
+    - _TopColorPercent: 1.11
     m_Colors:
-    - _BottomColor: {r: 0.054901965, g: 0.07058824, b: 0.21568629, a: 1}
-    - _TopColor: {r: 0.054901965, g: 0.07058824, b: 0.21568629, a: 1}
+    - _BottomColor: {r: 0.72156864, g: 0.9568628, b: 0.96470594, a: 1}
+    - _TopColor: {r: 0.69803923, g: 0.9568628, b: 0.97647065, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3068613843481937587
 MonoBehaviour:
