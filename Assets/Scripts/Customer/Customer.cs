@@ -125,7 +125,8 @@ public class Customer : MonoBehaviour
         Vector3 position = orderBubble.transform.position + new Vector3(0, 0.068f, 0);
         orderBubble.GetComponent<SpriteRenderer>().color = Color.white;
         GameObject orderIcon = Instantiate(order.GameObject(), position, Quaternion.identity);
-        orderIcon.transform.localScale = Vector3.one * 0.7f;
+        orderIcon.transform.localScale = Vector3.one * 0.13f;
+        orderIcon.GetComponent<SpriteRenderer>().sortingOrder = 2;
         orderIcon.transform.SetParent(orderBubble);
     }
 

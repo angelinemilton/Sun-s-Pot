@@ -8,6 +8,8 @@ TagManager:
   - Table
   - IngredientBox
   - Pot
+  - Trash
+  - Dump
   layers:
   - Default
   - TransparentFX

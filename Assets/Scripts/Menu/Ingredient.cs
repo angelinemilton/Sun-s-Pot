@@ -5,7 +5,8 @@ public class Ingredient : MonoBehaviour
 {
     [SerializeField] public Color fillingColor;
     [SerializeField] Sprite icon;
-    [SerializeField] string ingredientName;
+    [SerializeField] public string ingredientName;
+    [SerializeField] public float price;
 
     public Sprite GetIcon(){
         return icon;

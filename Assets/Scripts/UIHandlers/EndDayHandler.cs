@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class EndDayHandler : MonoBehaviour
 {
- 
-    void Start()
-    {
-        
-    }
-
 
     public void Upgrades(){
         SceneManager.LoadScene("Upgrades");

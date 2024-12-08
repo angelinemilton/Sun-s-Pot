@@ -23,12 +23,10 @@ public class PauseHandler : MonoBehaviour
     }
 
     public void Restart(){
-        Time.timeScale = 1;
         SceneManager.LoadScene("RestaurantScene");
     }
 
     public void MainMenu(){
-        Time.timeScale = 1;
         SceneManager.LoadScene("MainMenu");
     }
 }

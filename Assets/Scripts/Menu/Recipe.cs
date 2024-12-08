@@ -5,7 +5,7 @@ using UnityEngine;
 public class Recipe : MonoBehaviour
 {
     [SerializeField] public string recipeName;
-    [SerializeField] List<Ingredient> ingredientsList;
+    [SerializeField] public List<Ingredient> ingredientsList;
     [SerializeField] public float price = 15;
     IngredientList ingredients;
 

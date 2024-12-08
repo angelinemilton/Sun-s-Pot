@@ -40,8 +40,8 @@ Material:
     - _BottomColorPercent: 2.88
     - _TopColorPercent: 1.19
     m_Colors:
-    - _BottomColor: {r: 0.6431373, g: 0.9607844, b: 1, a: 1}
-    - _TopColor: {r: 0.6431373, g: 0.9607844, b: 1, a: 1}
+    - _BottomColor: {r: 0.054901965, g: 0.07058824, b: 0.21568629, a: 1}
+    - _TopColor: {r: 0.054901965, g: 0.07058824, b: 0.21568629, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3068613843481937587
 MonoBehaviour:

@@ -16,6 +16,9 @@ public class IngredientList
     }
 
     public bool Add(Ingredient ingredient){
+        foreach(Ingredient ingredient1 in ingredients){
+            Debug.Log(ingredient1.ingredientName);
+        }
         return ingredients.Add(ingredient);
     }
 

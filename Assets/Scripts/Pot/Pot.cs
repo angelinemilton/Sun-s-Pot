@@ -46,7 +46,12 @@ public class Pot : MonoBehaviour
     }
 
     public void AddIngredient(Ingredient ingredient){   
+        if(ingredient == null){
+            Debug.Log("Ingredient is null");
+            return;
+        }
         bool canAdd = ingredients.Add(ingredient);
+        Debug.Log("Can add ingredient: " + canAdd);
 
         recipe = GetRecipe();
         
@@ -70,7 +75,6 @@ public class Pot : MonoBehaviour
     Recipe GetRecipe(){
         //menu manager check if valid recipe
         return MenuManager.singleton.GetRecipe(ingredients);
-        //return ingredientsList.Count == 2 ? MenuManager.singleton.unlockedRecipes[0] : null;
     }
 
     public Recipe TakeRecipe(){
@@ -84,12 +88,13 @@ public class Pot : MonoBehaviour
         return null;
     }
 
-    void RemoveIngredients(){
+    public void RemoveIngredients(){
         ingredients = new IngredientList(new HashSet<Ingredient>());
         ingredientsList = new List<Ingredient>();
         foreach(GameObject slot in slots){
             slot.GetComponent<SpriteRenderer>().color = Color.clear;
         }
+        slotIndex = 0;
         RemoveFilling();
     }
 

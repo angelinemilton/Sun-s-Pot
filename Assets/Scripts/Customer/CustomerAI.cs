@@ -69,15 +69,11 @@ public class CustomerAI : MonoBehaviour
     }
 
     void EnterState(){
+        restuarantState = "EnterState";
         linePosition = CustomerGenerator.singleton.enterPos;
         //move from off camera to end of line
-        float endOfLineX = LineQueue.singleton.JoinLine();
-        customer.MoveToward(JoinLine());
+        customer.MoveToward(linePosition);
         
-    }
-
-    void LineWaitState(){
-        //move to end of line if x is less than LineQueue end of line
     }
 
     void SeatingState(){
@@ -221,6 +217,7 @@ public class CustomerAI : MonoBehaviour
 
         }
         else if(currentState == LeavingState){
+
         }
         else Debug.Log("State unknown");
     }

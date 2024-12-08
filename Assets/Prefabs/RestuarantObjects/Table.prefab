@@ -336,7 +336,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2197e95b6562f96489d89ff82c41aa44, type: 3}
-  m_Color: {r: 0.7169812, g: 0.52149826, b: 0.3754005, a: 1}
+  m_Color: {r: 0.757328, g: 0.8962264, b: 0.33397114, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -504,7 +504,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 2197e95b6562f96489d89ff82c41aa44, type: 3}
-  m_Color: {r: 0.654902, g: 0.3137255, b: 0.08235294, a: 1}
+  m_Color: {r: 0.7830189, g: 0.63911235, b: 0.12927197, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -625,8 +625,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.29, z: 0}
-  m_LocalScale: {x: 0.09, y: 0.0892717, z: 0.21040441}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.07, y: 0.0892717, z: 0.21040441}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1435334111476020848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -671,8 +671,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 71c08ea8e7750884b8c2a96d6058c3ed, type: 3}
-  m_Color: {r: 0.8207547, g: 0.7463052, b: 0.6929957, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 7112db1018129734d89adb5a49e564c4, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

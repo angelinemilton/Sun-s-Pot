@@ -21,6 +21,10 @@ public class Player : MonoBehaviour
     [SerializeField] bool inTableRange = false;
     [SerializeField] Table table;
 
+    [SerializeField] bool inTrashRange = false;
+    [SerializeField] bool inDumpRange = false;
+    [SerializeField] Pot mainPot;
+
     void Update()
     {
         transform.eulerAngles = Vector3.zero; 
@@ -63,6 +67,12 @@ public class Player : MonoBehaviour
                 Debug.Log("Could not find pot script");
             }
         }
+        else if(other.CompareTag("Trash")){
+            inTrashRange = true;
+        }
+        else if(other.CompareTag("Dump")){
+            inDumpRange = true;
+        }
     }
 
     void OnTriggerExit2D(Collider2D other){
@@ -82,6 +92,12 @@ public class Player : MonoBehaviour
             inTableRange = false;
             table = null;
         }
+        if(other.CompareTag("Trash")){
+            inTrashRange = false;
+        }
+        if(other.CompareTag("Dump")){
+            inDumpRange = false;
+        }
     }
 
     public void OnInteraction(){
@@ -96,6 +112,12 @@ public class Player : MonoBehaviour
         }
         else if(inTableRange){
             TableInteraction();
+        }
+        else if(inTrashRange){
+            TrashInteraction();
+        }
+        else if(inDumpRange){
+            mainPot.RemoveIngredients();
         }
         else{
             Debug.Log("No interactable object available");
@@ -125,6 +147,7 @@ public class Player : MonoBehaviour
         if(heldItem == null){
             heldItem = Instantiate(gameObject, holdPosition.position, Quaternion.identity);
             heldItem.transform.SetParent(holdPosition);
+            heldItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
         }
         
     }
@@ -143,6 +166,7 @@ public class Player : MonoBehaviour
             if(recipe != null){
                 heldItem = Instantiate(recipe.GameObject(), holdPosition.position, Quaternion.identity);
                 heldItem.transform.SetParent(holdPosition);
+                heldItem.GetComponent<SpriteRenderer>().sortingOrder = 2;
             }
         }
     }
@@ -162,6 +186,12 @@ public class Player : MonoBehaviour
             table.ClearTable();
         }
         else Debug.Log("No table interaction available");
+    }
+
+    void TrashInteraction(){
+        if(heldItem != null){
+            Destroy(heldItem.GameObject());
+        }
     }
 
     

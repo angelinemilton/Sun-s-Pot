@@ -78,7 +78,8 @@ public class Table : MonoBehaviour
         } 
         else if(recipe.recipeName == order.recipeName){
             placedOrder = Instantiate(recipe, rightFoodSlot.transform.position, Quaternion.identity);
-            placedOrder.transform.localScale = Vector3.one * 0.75f;
+            placedOrder.transform.localScale = Vector3.one * 0.2f;
+            placedOrder.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
             orderPlaced = true;
             if(customer != null){
                 customer.RemoveOrder();

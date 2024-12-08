@@ -22,6 +22,7 @@ public class RestuarantManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
         revenue = 0;
         revenueText.SetText("$" + revenue);
         if(singleton == null){

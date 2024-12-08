@@ -7,7 +7,6 @@ public class CustomerGenerator : MonoBehaviour
     [SerializeField] public float entryOffset = 0;
     [SerializeField] GameObject startOfLine;
     [SerializeField] Transform spawnPoint;
-    [SerializeField] Customer customer;
     [SerializeField] List<Customer> customerPrefabs;
 
     [SerializeField] float spawnDelay = 10;
@@ -52,16 +51,12 @@ public class CustomerGenerator : MonoBehaviour
             while(!RestuarantManager.singleton.IsClosed()){
                 SpawnCustomer();
                 customersCount++;
-                endOfLineOffset -= lineOffset;
-                enterPos -= new Vector3(endOfLineOffset, 0, 0);
                 yield return new WaitForSeconds(spawnDelay);
             }
         }
     }
 
     public void TakeCustomerFromLine(){
-        endOfLineOffset += lineOffset;
-        enterPos += new Vector3(endOfLineOffset, 0, 0);
         Debug.Log("Number of customers: " + customersCount);
     }
 }
